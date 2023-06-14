@@ -1,6 +1,6 @@
 import pygame
 from pygame.sprite import  Sprite
-from game.utils.constants import SCREEN_WIDTH,SPACESHIP,SCREEN_HEIGHT
+from game.utils.constants import SCREEN_WIDTH,SPACESHIP
 class Spaceship (Sprite):
     SHIP_WIDTH = 40
     SHIP_HEIGHT = 60
