@@ -26,8 +26,15 @@ class EnemyManager:
             self.enemies.append(enemy)
             self.last_enemy_time = time.time()
 
-    def Destroy_Enemy(self, bullet):
+    def destroy_enemy(self, bullet,game):
         for enemy in  self.enemies:
+            # implementar explosion 
             if enemy.rect.colliderect(bullet.rect):
                 self.enemies.remove(enemy)
+                score = game.scoremanager.update_score()
+                game.scoremanager.scorelist(score)
+                return True
+            
+    def reset(self):
+        self.enemies = []
 
