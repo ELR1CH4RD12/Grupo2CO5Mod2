@@ -36,7 +36,7 @@ class Game:
 
     def run(self):
         # Game loop: events - update - draw
-        self.score = 0
+        self.scoremanager.score = 0
         self.bullet_manager.reset()  #implementar
         self.enemy_manager.reset()
         self.playing = True
@@ -101,5 +101,5 @@ class Game:
         font = pygame.font.Font(FONT_STYLE, 30)
         text = font.render(f'Score: {self.scoremanager.score}', True, (255,255,255))
         text_rect = text.get_rect()
-        text_rect.center = (100, 100)
+        text_rect.center = (100, 50)
         self.screen.blit(text, text_rect)
