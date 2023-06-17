@@ -2,7 +2,7 @@
 import time
 import pygame
 
-from game.utils.constants import SOUND_EXPLOSION_PLAYER
+from game.utils.constants import SHIELD_TYPE, SOUND_EXPLOSION_PLAYER
 
 
 class BulletManager:
@@ -17,14 +17,15 @@ class BulletManager:
             bullet.update(self.enemy_bullets)
 
             if bullet.rect.colliderect(game.player.rect) and bullet.owner == 'enemy':
-                game.scoremanager.deathCount()
-                game.menu.actualscreen = True
+                if game.player.power_up_type != SHIELD_TYPE:
+                    game.scoremanager.deathCount()
+                    game.menu.actualscreen = True
+                    sound_explosion_player= pygame.mixer.Sound(SOUND_EXPLOSION_PLAYER)
+                    pygame.mixer.Sound.play(sound_explosion_player)
+                    game.playing = False
+                    pygame.time.delay(2000)
+                    break
                 self.enemy_bullets.remove(bullet)
-                sound_explosion_player= pygame.mixer.Sound(SOUND_EXPLOSION_PLAYER)
-                pygame.mixer.Sound.play(sound_explosion_player)
-                game.playing = False
-                pygame.time.delay(1050)
-                break
             else:
                 break
         
