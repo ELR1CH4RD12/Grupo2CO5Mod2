@@ -2,7 +2,7 @@ import pygame
 import random
 from pygame.sprite import  Sprite
 from game.components.bullets.bullet import Bullet
-from game.utils.constants import SCREEN_WIDTH,SPACESHIP
+from game.utils.constants import SCREEN_WIDTH, SOUND_BULLET_PLAYER,SPACESHIP
 class Spaceship (Sprite):
     SHIP_WIDTH = 40
     SHIP_HEIGHT = 60
@@ -56,4 +56,7 @@ class Spaceship (Sprite):
     def shoot(self, bullet_manager):
         bullet = Bullet(self)
         bullet_manager.add_bullet(bullet)
+        sound_explosion_player= pygame.mixer.Sound(SOUND_BULLET_PLAYER)
+        pygame.mixer.Sound.play(sound_explosion_player)
+
         

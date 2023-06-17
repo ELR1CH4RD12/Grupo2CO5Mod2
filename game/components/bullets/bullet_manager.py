@@ -2,6 +2,8 @@
 import time
 import pygame
 
+from game.utils.constants import SOUND_EXPLOSION_PLAYER
+
 
 class BulletManager:
     def __init__(self):
@@ -18,8 +20,10 @@ class BulletManager:
                 game.scoremanager.deathCount()
                 game.menu.actualscreen = True
                 self.enemy_bullets.remove(bullet)
+                sound_explosion_player= pygame.mixer.Sound(SOUND_EXPLOSION_PLAYER)
+                pygame.mixer.Sound.play(sound_explosion_player)
                 game.playing = False
-                pygame.time.delay(1000)
+                pygame.time.delay(1050)
                 break
             else:
                 break

@@ -1,5 +1,5 @@
 import pygame
-from game.utils.constants import FONT_STYLE, SCREEN_HEIGHT, SCREEN_WIDTH
+from game.utils.constants import FONT_STYLE, SCREEN_HEIGHT, SCREEN_WIDTH,IMG_M
 
 class Menu:
     HALF_SCREEN_HEIGHT = SCREEN_HEIGHT // 2

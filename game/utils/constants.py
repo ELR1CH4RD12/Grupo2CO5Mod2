@@ -11,9 +11,15 @@ IMG_DIR = os.path.join(os.path.dirname(__file__), "..", "assets")
 # Assets Constants
 ICON = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 
+SOUND_EXPLOSION = os.path.join(IMG_DIR, "Sounds/lose (5).wav")
+SOUND_EXPLOSION_PLAYER = os.path.join(IMG_DIR, "Sounds/lose (4).wav")
+SOUND_BULLET_PLAYER = os.path.join(IMG_DIR, "Sounds/hitHurt (2).wav")
+
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
+
+IMG_M = pygame.image.load(os.path.join(IMG_DIR, 'Other/FondoMenu.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 
