@@ -24,6 +24,7 @@ class Game:
         self.bullet_manager = BulletManager()
         self.scoremanager = ScoreManager()
         self.power_up_manager = PowerUpManager()
+        self.all_sprites = pygame.sprite.Group()
 
         self.menu = Menu ('Press Any Key to start...', self.screen)
 
@@ -59,6 +60,7 @@ class Game:
         self.bullet_manager.update(self,self.enemy_manager)
         self.player.update(usaer_input,self.bullet_manager)
         self.power_up_manager.update(self)
+        self.all_sprites.update ()
 
     def draw(self):
         self.clock.tick(FPS)
@@ -71,6 +73,7 @@ class Game:
         self.power_up_manager.draw(self.screen)
         self.draw_score()
         self.draw_power_up_time()
+        self.all_sprites.draw (self.screen)
         pygame.display.update()
         #pygame.display.flip()
 

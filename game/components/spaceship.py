@@ -20,6 +20,8 @@ class Spaceship (Sprite):
         self.power_up_type = DEFAULT_TYPE
         self.has_power_up = False
         self.power_time_up = 0
+        self.shoot_delay = 250
+        self.last_shot = pygame.time.get_ticks()
 
     def update(self,user_input,bullet_manager):
         key_actions = {
@@ -57,10 +59,13 @@ class Spaceship (Sprite):
         screen.blit(self.image,(self.rect.x, self.rect.y))
 
     def shoot(self, bullet_manager):
-        bullet = Bullet(self)
-        bullet_manager.add_bullet(bullet)
-        sound_explosion_player= pygame.mixer.Sound(SOUND_BULLET_PLAYER)
-        pygame.mixer.Sound.play(sound_explosion_player)
+        now = pygame.time.get_ticks ()
+        if now - self.last_shot > self.shoot_delay:
+            self.last_shot = now
+            bullet = Bullet(self)
+            bullet_manager.add_bullet(bullet)
+            sound_BULLET_player= pygame.mixer.Sound(SOUND_BULLET_PLAYER)
+            pygame.mixer.Sound.play(sound_BULLET_player)
         
     def set_image(self, size = (SHIP_WIDTH, SHIP_HEIGHT), image = SPACESHIP):
         self.image = image

@@ -2,6 +2,7 @@
 import time
 import pygame
 
+
 from game.utils.constants import SHIELD_TYPE, SOUND_EXPLOSION_PLAYER
 
 
@@ -13,6 +14,15 @@ class BulletManager:
         
 
     def update (self, game, enemy_manager):
+        for enemy in enemy_manager.enemies:
+            if enemy.rect.colliderect(game.player.rect):
+                sound_explosion_player= pygame.mixer.Sound(SOUND_EXPLOSION_PLAYER)
+                pygame.mixer.Sound.play(sound_explosion_player)
+                game.scoremanager.deathCount()
+                game.menu.actualscreen = True
+                game.playing = False
+                pygame.time.delay(2000)
+                break
         for bullet in self.enemy_bullets:
             bullet.update(self.enemy_bullets)
 

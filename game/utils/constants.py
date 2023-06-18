@@ -17,6 +17,13 @@ SOUND_BULLET_PLAYER = os.path.join(IMG_DIR, "Sounds/hitHurt (2).wav")
 
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
 
+EXPLOSION_ANIM = []
+for i in range (1,13):
+    file = 'Other/{}.png'.format(i)
+    img = pygame.image.load(os.path.join(IMG_DIR,file))
+    img = pygame.transform.scale(img,(40,40))
+    EXPLOSION_ANIM.append(img)
+
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 IMG_M = pygame.image.load(os.path.join(IMG_DIR, 'Other/FondoMenu.png'))

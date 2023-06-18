@@ -3,6 +3,7 @@ import time
 
 import pygame
 from game.components.enemies.enemy import Enemy
+from game.components.explosion import Explosion
 from game.utils.constants import SOUND_EXPLOSION
 
 
@@ -34,6 +35,8 @@ class EnemyManager:
             # implementar explosion 
             if enemy.rect.colliderect(bullet.rect):
                 self.enemies.remove(enemy)
+                expl = Explosion(enemy.rect.center)
+                game.all_sprites.add(expl)
                 sound_explosion= pygame.mixer.Sound(SOUND_EXPLOSION)
                 pygame.mixer.Sound.play(sound_explosion)
                 score = game.scoremanager.update_score()
