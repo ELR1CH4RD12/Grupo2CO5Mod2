@@ -1,4 +1,3 @@
-
 import pygame
 from game.utils.constants import EXPLOSION_ANIM
 

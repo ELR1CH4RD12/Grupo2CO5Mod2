@@ -4,7 +4,7 @@ import time
 import pygame
 from game.components.enemies.enemy import Enemy
 from game.components.explosion import Explosion
-from game.utils.constants import SOUND_EXPLOSION
+from game.utils.constants import SOUND_EXPLOSION, SOUND_EXPLOSION_PLAYER
 
 
 
@@ -17,6 +17,14 @@ class EnemyManager:
         self.add_enemy()
         for enemy in self.enemies:
             enemy.update(self.enemies,game)
+            if enemy.rect.colliderect(game.player.rect):
+                sound_explosion_player= pygame.mixer.Sound(SOUND_EXPLOSION_PLAYER)
+                pygame.mixer.Sound.play(sound_explosion_player)
+                game.scoremanager.deathCount()
+                game.menu.actualscreen = True
+                game.playing = False
+                pygame.time.delay(2000)
+                break
 
     def draw(self, screen):
         for enemy in self.enemies:

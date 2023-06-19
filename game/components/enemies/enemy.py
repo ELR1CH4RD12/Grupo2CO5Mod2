@@ -2,7 +2,7 @@ import random
 import pygame
 from pygame.sprite import Sprite
 from game.components.bullets.bullet import Bullet
-from game.utils.constants import ENEMY_1, ENEMY_2, SCREEN_HEIGHT, SCREEN_WIDTH
+from game.utils.constants import ENEMY_1, ENEMY_2, SCREEN_HEIGHT, SCREEN_WIDTH, SOUND_BULLET_ENEMY
 
 class Enemy(Sprite):
     SHIP_WIDTH = 40
@@ -24,7 +24,8 @@ class Enemy(Sprite):
         self.move_x_for = random.randint(30, 100)
         self.index = 0
         self.type = 'enemy'
-        self.shooting_time = random.randint(30, 50)
+        self.shooting_time = pygame.time.get_ticks()+500
+        self.shoot_num = 0
 
     def update(self, ships,game):
         self.rect.y += self.speed_y
@@ -52,9 +53,12 @@ class Enemy(Sprite):
             self.movement_x = 'right'
             self.index = 0
 
-    def shoot(self, bullet_Manager):
-        current_time = pygame.time.get_ticks()
-        if self.shooting_time <= current_time:
-            bullet = Bullet(self)
-            bullet_Manager.add_bullet(bullet)
-            self.shooting_time += random.randint(30, 50)
+    def shoot(self, bullet_manager):
+            round_time = round((self.shooting_time - pygame.time.get_ticks())/1000)
+            if round_time <= 0:
+                bullet = Bullet(self)
+                bullet_manager.add_bullet(bullet)
+                sound_BULLET_enemy= pygame.mixer.Sound(SOUND_BULLET_ENEMY)
+                pygame.mixer.Sound.play(sound_BULLET_enemy)
+                self.shoot_num += 1
+                self.shooting_time = pygame.time.get_ticks()+2000

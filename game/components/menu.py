@@ -1,5 +1,5 @@
 import pygame
-from game.utils.constants import FONT_STYLE, SCREEN_HEIGHT, SCREEN_WIDTH,IMG_M
+from game.utils.constants import FONT_STYLE, IMG_S, SCREEN_HEIGHT, SCREEN_WIDTH,IMG_M
 
 class Menu:
     HALF_SCREEN_HEIGHT = SCREEN_HEIGHT // 2
@@ -28,15 +28,22 @@ class Menu:
             screen.blit(self.deaths, self.text_rect4)
 
     def handle_events_on_menu(self, game):
+        user_input = pygame.key.get_pressed()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 game.playing = False
                 game.running = False
-            elif event.type == pygame.KEYDOWN:
+            elif user_input[pygame.K_TAB]:
                 game.run()
 
-    def reset_screen_color(self, screen):
-        screen.fill((255, 255, 255))
+    def reset_screen_color(self, screen, death_count):
+            # screen.fill((255,255,255))
+            if death_count == 0:
+                image = pygame.transform.scale(IMG_M, (SCREEN_WIDTH, SCREEN_HEIGHT))
+            else:
+                image = pygame.transform.scale(IMG_S, (SCREEN_WIDTH, SCREEN_HEIGHT))
+
+            screen.blit(image, (0, 0))
 
     def update_message(self, message):
         self.text = self.font.render(message, True, (0,0,0))

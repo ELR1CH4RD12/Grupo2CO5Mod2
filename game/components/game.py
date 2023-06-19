@@ -91,7 +91,7 @@ class Game:
         half_screen_width = SCREEN_WIDTH // 2
         half_screen_height = SCREEN_HEIGHT //2
 
-        self.menu.reset_screen_color(self.screen)
+        self.menu.reset_screen_color(self.screen,self.scoremanager.death_count)
 
         if self.scoremanager.death_count > 0:
             self.menu.update_message('Game over Prees any key to restart')
@@ -115,7 +115,7 @@ class Game:
 
     def draw_power_up_time(self):
         if self.player.has_power_up:
-            time_to_show = round((self.player.power_time_up - pygame.time.get_ticks())/1000, 2)
+            time_to_show = round((self.player.power_time_up - pygame.time.get_ticks())/1000)
 
             if time_to_show >=0:
                 font = pygame.font.Font(FONT_STYLE, 30)
