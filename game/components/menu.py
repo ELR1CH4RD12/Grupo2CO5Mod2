@@ -7,8 +7,8 @@ class Menu:
 
     def __init__(self, message, screen):
         screen.fill((255, 255, 255))
-        self.font = pygame.font.Font(FONT_STYLE, 50)
-        self.text = self.font.render(message, True, (0,0,0))
+        self.font = pygame.font.Font(FONT_STYLE, 15)
+        self.text = self.font.render(message, True, (255,255,255))
         self.text_rect = self.text.get_rect()
         self.text_rect.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT)
         self.actualscreen = False
@@ -54,7 +54,7 @@ class Menu:
     def show_scores(self, score, highscore, deaths):
         self.score = self.font.render("Your score: " + score, True, (255,255,255))
         self.text_rect2 = self.score.get_rect()
-        self.text_rect2.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 50)
+        self.text_rect2.center = (self.HALF_SCREEN_WIDTH , self.HALF_SCREEN_HEIGHT + 20)
 
         self.highscore = self.font.render("Highest score: " + highscore, True, (255,255,255))
         self.text_rect3 = self.highscore.get_rect()

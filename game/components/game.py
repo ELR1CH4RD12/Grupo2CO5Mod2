@@ -26,7 +26,7 @@ class Game:
         self.power_up_manager = PowerUpManager()
         self.all_sprites = pygame.sprite.Group()
 
-        self.menu = Menu ('Press TAB to start...', self.screen)
+        self.menu = Menu ('', self.screen)
 
     def execute (self):
         self.running = True
@@ -97,8 +97,6 @@ class Game:
             self.menu.update_message('Game over Prees TAB to restart')
             self.menu.show_scores(str(self.scoremanager.score), str(self.scoremanager.highscore()), str(self.scoremanager.death_count))
         
-        icon = pygame.transform.scale (ICON, (80,120))
-        self.screen.blit(icon, (half_screen_width - 50, half_screen_height -235))
         
         self.menu.draw(self.screen)
         self.menu.update(self)
