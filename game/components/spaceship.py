@@ -2,7 +2,7 @@ import pygame
 import random
 from pygame.sprite import  Sprite
 from game.components.bullets.bullet import Bullet
-from game.utils.constants import DEFAULT_TYPE,SCREEN_WIDTH, SOUND_BULLET_PLAYER,SPACESHIP
+from game.utils.constants import DEFAULT_TYPE, SCREEN_HEIGHT,SCREEN_WIDTH, SOUND_BULLET_PLAYER,SPACESHIP
 class Spaceship (Sprite):
     SHIP_WIDTH = 40
     SHIP_HEIGHT = 60
@@ -21,7 +21,10 @@ class Spaceship (Sprite):
         self.has_power_up = False
         self.power_time_up = 0
         self.shoot_delay = 250
+        self.lives = 3
+        self.hidden = False
         self.last_shot = pygame.time.get_ticks()
+        self.hide_timer = pygame.time.get_ticks()
 
     def update(self,user_input,bullet_manager):
         key_actions = {
@@ -64,10 +67,22 @@ class Spaceship (Sprite):
             self.last_shot = now
             bullet = Bullet(self)
             bullet_manager.add_bullet(bullet)
-            sound_BULLET_player= pygame.mixer.Sound(SOUND_BULLET_PLAYER)
+            sound_BULLET_player= pygame.mixer.Sound(SOUND_BULLET_PLAYER) 
+            sound_BULLET_player.set_volume(0.1)
             pygame.mixer.Sound.play(sound_BULLET_player)
+            
         
     def set_image(self, size = (SHIP_WIDTH, SHIP_HEIGHT), image = SPACESHIP):
         self.image = image
         self.image = pygame.transform.scale(self.image, size)
         
+    def reset(self):
+        self.rect.x = self.X_POS
+        self.rect.y = self.Y_POS
+        self.power_time_up = 0
+        self.power_up_type = DEFAULT_TYPE
+    
+    def hide(self):
+        self.hidden = True
+        self.hide_timer = pygame.time.get_ticks()
+        self.rect.center = (SCREEN_WIDTH / 2, SCREEN_HEIGHT -40)

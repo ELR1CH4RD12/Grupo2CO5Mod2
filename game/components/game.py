@@ -3,7 +3,7 @@ from game.components.bullets.bullet_manager import BulletManager
 from game.components.enemies.enemy_manager import EnemyManager
 from game.components.menu import Menu
 from game.components.power_ups.power_up_manager import PowerUpManager
-from game.utils.constants import BG, FONT_STYLE,ICON, SCREEN_HEIGHT, SCREEN_WIDTH, TITLE, FPS, DEFAULT_TYPE
+from game.utils.constants import BG, FONT_STYLE,ICON, SCREEN_HEIGHT, SCREEN_WIDTH, SHIELD_TYPE, SOUND_BACK, SOUND_BACK_M, TITLE, FPS, DEFAULT_TYPE
 from game.components.spaceship import   Spaceship
 from game.components.scoreManager import ScoreManager
 
@@ -43,6 +43,9 @@ class Game:
         self.bullet_manager.reset()  #implementar
         self.enemy_manager.reset()
         self.playing = True
+        pygame.mixer.music.load(SOUND_BACK)
+        pygame.mixer.music.play(-1)
+        pygame.mixer.music.set_volume(0.3)
         while self.playing:
             self.events()
             self.update()
@@ -94,9 +97,10 @@ class Game:
         self.menu.reset_screen_color(self.screen,self.scoremanager.death_count)
 
         if self.scoremanager.death_count > 0:
-            self.menu.update_message('Game over Prees TAB to restart')
+            self.menu.update_message('')
             self.menu.show_scores(str(self.scoremanager.score), str(self.scoremanager.highscore()), str(self.scoremanager.death_count))
         
+
         
         self.menu.draw(self.screen)
         self.menu.update(self)
@@ -105,21 +109,28 @@ class Game:
         self.score += 1
 
     def draw_score(self):
-        font = pygame.font.Font(FONT_STYLE, 30)
+        font = pygame.font.Font(FONT_STYLE, 15)
         text = font.render(f'Score: {self.scoremanager.score}', True, (255,255,255))
         text_rect = text.get_rect()
         text_rect.center = (100, 50)
         self.screen.blit(text, text_rect)
+
+        fontLives = pygame.font.Font(FONT_STYLE, 15)
+        textLives = fontLives.render(f'Lives: {self.player.lives}', True, (255, 255, 255))
+        text_rect = textLives.get_rect()
+        text_rect.center = (100, 100)
+        self.screen.blit(textLives, text_rect)
 
     def draw_power_up_time(self):
         if self.player.has_power_up:
             time_to_show = round((self.player.power_time_up - pygame.time.get_ticks())/1000)
 
             if time_to_show >=0:
-                font = pygame.font.Font(FONT_STYLE, 30)
-                text = font.render(f'{self.player.power_up_type.capitalize()} is enable for {time_to_show} seconds', True, (255,255,255))
-                text_rect = text.get_rect()
-                self.screen.blit(text,(540, 50))
+                if self.player.power_up_type == SHIELD_TYPE:
+                    font = pygame.font.Font(FONT_STYLE, 15)
+                    text = font.render(f'{self.player.power_up_type.capitalize()} is enable for {time_to_show} seconds', True, (255,255,255))
+                    text_rect = text.get_rect()
+                    self.screen.blit(text,(540, 50))
             else:
                 self.player_has_power_up = False
                 self.player.power_up_type = DEFAULT_TYPE

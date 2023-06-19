@@ -1,5 +1,5 @@
 import pygame
-from game.utils.constants import FONT_STYLE, IMG_S, SCREEN_HEIGHT, SCREEN_WIDTH,IMG_M
+from game.utils.constants import FONT_STYLE, IMG_S, SCREEN_HEIGHT, SCREEN_WIDTH,IMG_M, SOUND_BACK_M
 
 class Menu:
     HALF_SCREEN_HEIGHT = SCREEN_HEIGHT // 2
@@ -34,6 +34,7 @@ class Menu:
                 game.playing = False
                 game.running = False
             elif user_input[pygame.K_TAB]:
+                pygame.mixer.music.stop()
                 game.run()
 
     def reset_screen_color(self, screen, death_count):
@@ -52,14 +53,15 @@ class Menu:
 
 
     def show_scores(self, score, highscore, deaths):
+        pygame.mixer.music.stop()
         self.score = self.font.render("Your score: " + score, True, (255,255,255))
         self.text_rect2 = self.score.get_rect()
-        self.text_rect2.center = (self.HALF_SCREEN_WIDTH , self.HALF_SCREEN_HEIGHT + 20)
+        self.text_rect2.center = (self.HALF_SCREEN_WIDTH , self.HALF_SCREEN_HEIGHT + 5)
 
         self.highscore = self.font.render("Highest score: " + highscore, True, (255,255,255))
         self.text_rect3 = self.highscore.get_rect()
-        self.text_rect3.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 100)
+        self.text_rect3.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 50)
 
         self.deaths = self.font.render("Total deaths: " + deaths, True, (255,255,255))
         self.text_rect4 = self.score.get_rect()
-        self.text_rect4.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 150)
+        self.text_rect4.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 100)

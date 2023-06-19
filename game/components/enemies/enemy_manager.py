@@ -4,7 +4,7 @@ import time
 import pygame
 from game.components.enemies.enemy import Enemy
 from game.components.explosion import Explosion
-from game.utils.constants import SOUND_EXPLOSION, SOUND_EXPLOSION_PLAYER
+from game.utils.constants import SHIELD_TYPE, SOUND_EXPLOSION, SOUND_EXPLOSION_PLAYER
 
 
 
@@ -18,13 +18,26 @@ class EnemyManager:
         for enemy in self.enemies:
             enemy.update(self.enemies,game)
             if enemy.rect.colliderect(game.player.rect):
-                sound_explosion_player= pygame.mixer.Sound(SOUND_EXPLOSION_PLAYER)
-                pygame.mixer.Sound.play(sound_explosion_player)
-                game.scoremanager.deathCount()
-                game.menu.actualscreen = True
-                game.playing = False
-                pygame.time.delay(2000)
-                break
+                if game.player.power_up_type != SHIELD_TYPE:
+                    game.player.lives -= 1
+                    explode = Explosion(enemy.rect.center)
+                    game.all_sprites.add(explode)
+                    game.enemy_manager.enemies.remove(enemy)
+                    explode = Explosion(game.player.rect.center)
+                    game.all_sprites.add(explode)
+                    game.player.hide()
+                    sound_explosion_player= pygame.mixer.Sound(SOUND_EXPLOSION_PLAYER)
+                    pygame.mixer.Sound.play(sound_explosion_player)
+                    if game.player.lives==0:
+                        game.scoremanager.deathCount()
+                        game.menu.actualscreen = True
+                        game.playing = False
+                        pygame.time.delay(2000)
+                        break
+                else:
+                    game.enemy_manager.enemies.remove(enemy)
+                    explode = Explosion(enemy.rect.center)
+                    game.all_sprites.add(explode)
 
     def draw(self, screen):
         for enemy in self.enemies:

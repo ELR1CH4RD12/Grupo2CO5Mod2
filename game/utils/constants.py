@@ -13,12 +13,16 @@ ICON = pygame.image.load(os.path.join(IMG_DIR, "Spaceship/spaceship.png"))
 
 SOUND_EXPLOSION = os.path.join(IMG_DIR, "Sounds/lose (5).wav")
 SOUND_EXPLOSION_PLAYER = os.path.join(IMG_DIR, "Sounds/lose (4).wav")
-SOUND_BULLET_PLAYER = os.path.join(IMG_DIR, "Sounds/hitHurt (2).wav")
+SOUND_BULLET_PLAYER = os.path.join(IMG_DIR, "Sounds/pew.mp3")
 SOUND_BULLET_ENEMY = os.path.join(IMG_DIR, "Sounds/hitHurt (5).wav")
 AKU_AKU = os.path.join(IMG_DIR, "Sounds/akuaku-sub-sesi.mp3")
+KABOOM = os.path.join(IMG_DIR, "Sounds/kaboom.mp3")
+UP1= os.path.join(IMG_DIR, "Sounds/mario_guwqdsC.mp3")
+SOUND_BACK = os.path.join(IMG_DIR, "Sounds/musicafondojuego.MP3")
+SOUND_BACK_M = os.path.join(IMG_DIR, "Sounds/fondojuegomenu.MP3")
 
 
-SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))
+SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/escudo.png'))
 
 EXPLOSION_ANIM = []
 for i in range (1,13):
@@ -44,6 +48,9 @@ BULLET = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_1.png"))
 BULLET_ENEMY = pygame.image.load(os.path.join(IMG_DIR, "Bullet/bullet_2.png"))
 ENEMY_1 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_1.png"))
 ENEMY_2 = pygame.image.load(os.path.join(IMG_DIR, "Enemy/enemy_2.png"))
+
+HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/1up.png'))
+MISILE = pygame.image.load(os.path.join(IMG_DIR, 'Other/petaseta.png'))
 
 FONT_STYLE = os.path.join('C:/Users/ELR1CH4RD/Desktop/Nueva carpeta jala/Grupo2CO5Mod2/game/assets/nueva_fuente', '8-BIT WONDER.TTF')
 
