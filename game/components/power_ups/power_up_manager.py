@@ -3,7 +3,7 @@ import random
 import pygame
 from game.components.power_ups.shield import Shield
 
-from game.utils.constants import SPACESHIP_SHIELD
+from game.utils.constants import AKU_AKU, SPACESHIP_SHIELD
 
 
 class PowerUpManager:
@@ -26,9 +26,12 @@ class PowerUpManager:
                 #implementar en game y player
                 game.player.power_up_type = power_up.type
                 game.player.has_power_up = True
-                game.player.power_time_up = power_up.start_time + (self.duration * 1000)
+                sound_Shield= pygame.mixer.Sound(AKU_AKU)
+                pygame.mixer.Sound.play(sound_Shield)
+                game.player.power_time_up = power_up.start_time + (self.duration * 2800)
                 game.player.set_image((65, 75), SPACESHIP_SHIELD)
                 self.power_ups.remove(power_up)
+                
 
     def draw(self, screen):
         for power_up in self.power_ups:

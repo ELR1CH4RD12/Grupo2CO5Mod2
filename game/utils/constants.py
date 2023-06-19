@@ -15,6 +15,7 @@ SOUND_EXPLOSION = os.path.join(IMG_DIR, "Sounds/lose (5).wav")
 SOUND_EXPLOSION_PLAYER = os.path.join(IMG_DIR, "Sounds/lose (4).wav")
 SOUND_BULLET_PLAYER = os.path.join(IMG_DIR, "Sounds/hitHurt (2).wav")
 SOUND_BULLET_ENEMY = os.path.join(IMG_DIR, "Sounds/hitHurt (5).wav")
+AKU_AKU = os.path.join(IMG_DIR, "Sounds/akuaku-sub-sesi.mp3")
 
 
 SHIELD = pygame.image.load(os.path.join(IMG_DIR, 'Other/shield.png'))

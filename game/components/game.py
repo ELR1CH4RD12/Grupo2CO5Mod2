@@ -26,7 +26,7 @@ class Game:
         self.power_up_manager = PowerUpManager()
         self.all_sprites = pygame.sprite.Group()
 
-        self.menu = Menu ('Press Any Key to start...', self.screen)
+        self.menu = Menu ('Press TAB to start...', self.screen)
 
     def execute (self):
         self.running = True
@@ -94,11 +94,11 @@ class Game:
         self.menu.reset_screen_color(self.screen,self.scoremanager.death_count)
 
         if self.scoremanager.death_count > 0:
-            self.menu.update_message('Game over Prees any key to restart')
+            self.menu.update_message('Game over Prees TAB to restart')
             self.menu.show_scores(str(self.scoremanager.score), str(self.scoremanager.highscore()), str(self.scoremanager.death_count))
         
         icon = pygame.transform.scale (ICON, (80,120))
-        self.screen.blit(icon, (half_screen_width - 50, half_screen_height -120))
+        self.screen.blit(icon, (half_screen_width - 50, half_screen_height -235))
         
         self.menu.draw(self.screen)
         self.menu.update(self)

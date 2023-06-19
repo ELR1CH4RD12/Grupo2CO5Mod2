@@ -46,20 +46,20 @@ class Menu:
             screen.blit(image, (0, 0))
 
     def update_message(self, message):
-        self.text = self.font.render(message, True, (0,0,0))
+        self.text = self.font.render(message, True, (255,255,255))
         self.text_rect = self.text.get_rect()
         self.text_rect.center = (self.HALF_SCREEN_WIDTH + 20, self.HALF_SCREEN_HEIGHT)
 
 
     def show_scores(self, score, highscore, deaths):
-        self.score = self.font.render("Your score: " + score, True, (0, 0, 0))
+        self.score = self.font.render("Your score: " + score, True, (255,255,255))
         self.text_rect2 = self.score.get_rect()
         self.text_rect2.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 50)
 
-        self.highscore = self.font.render("Highest score: " + highscore, True, (0, 0, 0))
+        self.highscore = self.font.render("Highest score: " + highscore, True, (255,255,255))
         self.text_rect3 = self.highscore.get_rect()
         self.text_rect3.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 100)
 
-        self.deaths = self.font.render("Total deaths: " + deaths, True, (0, 0, 0))
+        self.deaths = self.font.render("Total deaths: " + deaths, True, (255,255,255))
         self.text_rect4 = self.score.get_rect()
         self.text_rect4.center = (self.HALF_SCREEN_WIDTH, self.HALF_SCREEN_HEIGHT + 150)
